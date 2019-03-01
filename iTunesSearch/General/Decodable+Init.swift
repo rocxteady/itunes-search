@@ -11,7 +11,11 @@ import Foundation
 extension Decodable {
     
     init(data: Data) throws {
-        self = try JSONDecoder().decode(Self.self, from: data)
+        let jsonDecoder = JSONDecoder()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        jsonDecoder.dateDecodingStrategy = .formatted(dateFormatter)
+        self = try jsonDecoder.decode(Self.self, from: data)
     }
     
 }

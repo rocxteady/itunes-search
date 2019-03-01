@@ -43,6 +43,7 @@ class NetworkRequest<T: Decodable>: NetworkRequestProtocol {
                         do {
                             let t = try T(data: data)
                             observer.onNext(t)
+                            observer.onCompleted()
                         } catch let error {
                             observer.onError(error)
                         }

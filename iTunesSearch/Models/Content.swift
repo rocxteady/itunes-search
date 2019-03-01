@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Content: Codable {
+struct Content: Decodable {
     
     let wrapperType: String?
     let kind: String?
@@ -48,6 +48,15 @@ extension Content: Equatable {
     
     static func == (lhs: Content, rhs: Content) -> Bool {
         return lhs.trackId == rhs.trackId
+    }
+    
+}
+
+extension Content: CustomStringConvertible {
+    
+    var description: String {
+        return "Artist ID: " + String(describing: self.artistId) + "\n" +
+        "Track Name: " + String(describing: self.trackName)
     }
     
 }
