@@ -15,6 +15,11 @@
 		7CEFB5D322298CD000EA81CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CEFB5D122298CD000EA81CA /* LaunchScreen.storyboard */; };
 		7CEFB5DE22298CD000EA81CA /* iTunesSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEFB5DD22298CD000EA81CA /* iTunesSearchTests.swift */; };
 		7CEFB5E922298CD000EA81CA /* iTunesSearchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEFB5E822298CD000EA81CA /* iTunesSearchUITests.swift */; };
+		7CEFB5FF2229929300EA81CA /* Decodable+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEFB5FC2229929300EA81CA /* Decodable+Init.swift */; };
+		7CEFB6002229929300EA81CA /* Configs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEFB5FD2229929300EA81CA /* Configs.swift */; };
+		7CEFB6012229929300EA81CA /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEFB5FE2229929300EA81CA /* Content.swift */; };
+		7CEFB603222992B100EA81CA /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEFB602222992B100EA81CA /* NetworkRequest.swift */; };
+		7CEFB605222992F500EA81CA /* ErrorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEFB604222992F500EA81CA /* ErrorHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +54,11 @@
 		7CEFB5E422298CD000EA81CA /* iTunesSearchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iTunesSearchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CEFB5E822298CD000EA81CA /* iTunesSearchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesSearchUITests.swift; sourceTree = "<group>"; };
 		7CEFB5EA22298CD000EA81CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7CEFB5FC2229929300EA81CA /* Decodable+Init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Decodable+Init.swift"; sourceTree = "<group>"; };
+		7CEFB5FD2229929300EA81CA /* Configs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configs.swift; sourceTree = "<group>"; };
+		7CEFB5FE2229929300EA81CA /* Content.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
+		7CEFB602222992B100EA81CA /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
+		7CEFB604222992F500EA81CA /* ErrorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHelper.swift; sourceTree = "<group>"; };
 		850039426B23D8AAFF204FBE /* Pods-iTunesSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTunesSearch.debug.xcconfig"; path = "Target Support Files/Pods-iTunesSearch/Pods-iTunesSearch.debug.xcconfig"; sourceTree = "<group>"; };
 		CE9862E259C9420AF8BB3299 /* Pods-iTunesSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTunesSearch.release.xcconfig"; path = "Target Support Files/Pods-iTunesSearch/Pods-iTunesSearch.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -85,7 +95,6 @@
 				850039426B23D8AAFF204FBE /* Pods-iTunesSearch.debug.xcconfig */,
 				CE9862E259C9420AF8BB3299 /* Pods-iTunesSearch.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -122,6 +131,9 @@
 		7CEFB5C722298CCF00EA81CA /* iTunesSearch */ = {
 			isa = PBXGroup;
 			children = (
+				7CEFB606222993BE00EA81CA /* Networking */,
+				7CEFB607222993CB00EA81CA /* Models */,
+				7CEFB608222993E400EA81CA /* General */,
 				7CEFB5C822298CCF00EA81CA /* AppDelegate.swift */,
 				7CEFB5CA22298CCF00EA81CA /* ViewController.swift */,
 				7CEFB5CC22298CCF00EA81CA /* Main.storyboard */,
@@ -148,6 +160,32 @@
 				7CEFB5EA22298CD000EA81CA /* Info.plist */,
 			);
 			path = iTunesSearchUITests;
+			sourceTree = "<group>";
+		};
+		7CEFB606222993BE00EA81CA /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				7CEFB602222992B100EA81CA /* NetworkRequest.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		7CEFB607222993CB00EA81CA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7CEFB5FE2229929300EA81CA /* Content.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7CEFB608222993E400EA81CA /* General */ = {
+			isa = PBXGroup;
+			children = (
+				7CEFB5FD2229929300EA81CA /* Configs.swift */,
+				7CEFB5FC2229929300EA81CA /* Decodable+Init.swift */,
+				7CEFB604222992F500EA81CA /* ErrorHelper.swift */,
+			);
+			path = General;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -339,7 +377,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				7CEFB5CB22298CCF00EA81CA /* ViewController.swift in Sources */,
+				7CEFB6002229929300EA81CA /* Configs.swift in Sources */,
 				7CEFB5C922298CCF00EA81CA /* AppDelegate.swift in Sources */,
+				7CEFB6012229929300EA81CA /* Content.swift in Sources */,
+				7CEFB605222992F500EA81CA /* ErrorHelper.swift in Sources */,
+				7CEFB603222992B100EA81CA /* NetworkRequest.swift in Sources */,
+				7CEFB5FF2229929300EA81CA /* Decodable+Init.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
