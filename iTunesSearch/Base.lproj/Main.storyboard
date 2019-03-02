@@ -82,11 +82,19 @@
                             <outlet property="delegate" destination="jpN-9O-CUJ" id="Aae-Px-Ww1"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="i7X-cO-XqF"/>
+                    <navigationItem key="navigationItem" id="i7X-cO-XqF">
+                        <barButtonItem key="rightBarButtonItem" image="filter" id="wmN-ah-gi2"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="filterButton" destination="wmN-ah-gi2" id="FtY-2R-WWt"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jaS-Cp-jV7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="809" y="-567"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="filter" width="25" height="25"/>
+    </resources>
 </document>

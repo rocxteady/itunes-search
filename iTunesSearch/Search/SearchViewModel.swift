@@ -13,12 +13,29 @@ class SearchViewModel {
     
     let contents = Variable<[Content]>([Content]())
     
+    var term = Variable<String>("")
+    
+    var contentType = Variable<ContentType>(.all)
+    
     private let request = SearchRequest()
     
     private var disposable: Disposable?
     
-    func search(term: String) {
-        self.request.parameters = SearchParams(term: term)
+    private var disposeBag = DisposeBag()
+    
+    init() {
+        self.request.parameters = SearchParams()
+        self.term.asObservable().subscribe(onNext: { (term) in
+            self.request.parameters?.term = term
+            self.search()
+        }).disposed(by: self.disposeBag)
+        self.contentType.asObservable().distinctUntilChanged().subscribe(onNext: { (contentType) in
+            self.request.parameters?.media = contentType
+            self.search()
+        }).disposed(by: self.disposeBag)
+    }
+    
+    private func search() {
         self.disposable = self.request.start()
             .subscribe(onNext: { [weak self] (response) in
                 self?.contents.value = response.results ?? [Content]()

@@ -14,6 +14,8 @@ struct SearchParams: Encodable {
     
     var term = ""
     
+    var media: ContentType = .all
+    
 }
 
 extension SearchParams {

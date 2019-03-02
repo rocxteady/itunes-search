@@ -8,6 +8,23 @@
 
 import Foundation
 
+enum ContentType: String, Encodable {
+    
+    case movie = "movie"
+    case podcast = "podcast"
+    case music = "music"
+    case all = "all"
+    
+    var description: String {
+        return self.rawValue.capitalized
+    }
+    
+    static func allTypes() -> [ContentType] {
+        return [ContentType.movie, ContentType.podcast, ContentType.music, ContentType.all]
+    }
+    
+}
+
 struct Content: Decodable {
     
     let wrapperType: String?
