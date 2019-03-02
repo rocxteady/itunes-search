@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchRequest: NetworkRequest<SearchResponse> {
+class SearchRequest: NetworkRequest<SearchResponse, SearchParams> {
     
     override init() {
         super.init()

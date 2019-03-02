@@ -12,31 +12,45 @@ import Alamofire
 
 protocol NetworkRequestProtocol {
     
+    associatedtype P
+    
     var path: String {get}
     
-    var parameters: [String: Any]? {get}
+    var parameters: P? {get}
     
 }
 
 //T for response object model
-class NetworkRequest<T: Decodable>: NetworkRequestProtocol {
+//P for parameters object model
+class NetworkRequest<T: Decodable, P: Encodable>: NetworkRequestProtocol {
     
     private var httpMethod: HTTPMethod = .get
     
     var path: String = ""
     
-    var parameters: [String : Any]?
+    var parameters: P?
     
     var currentRequest: DataRequest?
     
     private(set) var currentTask: URLSessionTask?
     
     func start() -> Observable<T> {
-        let fullURLString = createURLString()
-        self.currentRequest = AF.request(fullURLString, method: self.httpMethod, parameters: self.parameters)
-        return Observable<T>.create({ [weak self] (observer) -> Disposable in
-            self?.currentRequest?.responseData { response in
-                self?.end()
+        return Observable<T>.create({ (observer) -> Disposable in
+            let fullURLString = self.createURLString()
+            var params: [String: AnyObject]?
+            if let parameters = self.parameters {
+                do {
+                    params = try parameters.toDictionary()
+                } catch let error {
+                    print(error.localizedDescription)
+                    let error = ErrorHelper.crateError(type: .noData)
+                    observer.onError(error)
+                    return Disposables.create()
+                }
+            }
+            self.currentRequest = AF.request(fullURLString, method: self.httpMethod, parameters: params)
+            self.currentRequest?.responseData { response in
+                self.end()
                 switch response.result {
                 case .success:
                     if let data = response.data {

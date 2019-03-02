@@ -17,8 +17,9 @@ class SearchViewModel {
     
     private var disposable: Disposable?
     
-    func search() {
-       self.disposable = self.request.start()
+    func search(term: String) {
+        self.request.parameters = SearchParams(term: term)
+        self.disposable = self.request.start()
             .subscribe(onNext: { [weak self] (response) in
                 self?.contents.value = response.results ?? [Content]()
             }, onError: { [weak self] (error) in                
