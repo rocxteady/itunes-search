@@ -12,11 +12,15 @@ enum ErrorType: Int {
     
     case noData = 0
     
+    case fileError = 1
+    
     var description: String {
         get {
             switch self {
             case .noData:
                 return NSLocalizedString("No data available currently.", comment: "")
+            case .fileError:
+                return NSLocalizedString("File operation error.", comment: "")
             }
         }
     }
@@ -30,4 +34,5 @@ struct ErrorHelper {
     static func crateError(type: ErrorType) -> Error {
         return NSError(domain: domain, code: type.rawValue, userInfo: [NSLocalizedDescriptionKey: type.description])
     }
+    
 }

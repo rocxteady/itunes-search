@@ -33,6 +33,8 @@
 		EB792D61222D0F5100360EEB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB792D60222D0F5100360EEB /* DetailViewController.swift */; };
 		EB792D63222D10A700360EEB /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB792D62222D10A700360EEB /* ContentViewModel.swift */; };
 		EB792D65222D11D800360EEB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB792D64222D11D800360EEB /* ContentView.swift */; };
+		EB792D67222D41D400360EEB /* ContentFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB792D66222D41D400360EEB /* ContentFileManager.swift */; };
+		EB792D69222D43D700360EEB /* FileContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB792D68222D43D700360EEB /* FileContent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +89,8 @@
 		EB792D60222D0F5100360EEB /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		EB792D62222D10A700360EEB /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		EB792D64222D11D800360EEB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		EB792D66222D41D400360EEB /* ContentFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFileManager.swift; sourceTree = "<group>"; };
+		EB792D68222D43D700360EEB /* FileContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileContent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +185,8 @@
 				7CEFB5CF22298CD000EA81CA /* Assets.xcassets */,
 				7CEFB5D122298CD000EA81CA /* LaunchScreen.storyboard */,
 				7CEFB5D422298CD000EA81CA /* Info.plist */,
+				EB792D66222D41D400360EEB /* ContentFileManager.swift */,
+				EB792D68222D43D700360EEB /* FileContent.swift */,
 			);
 			path = iTunesSearch;
 			sourceTree = "<group>";
@@ -437,6 +443,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7CEFB5CB22298CCF00EA81CA /* SearchViewController.swift in Sources */,
+				EB792D69222D43D700360EEB /* FileContent.swift in Sources */,
+				EB792D67222D41D400360EEB /* ContentFileManager.swift in Sources */,
 				EB792D61222D0F5100360EEB /* DetailViewController.swift in Sources */,
 				7C8DA848222B037700F14422 /* ContentHeaderView.swift in Sources */,
 				7CEFB6002229929300EA81CA /* Configs.swift in Sources */,

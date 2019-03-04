@@ -22,6 +22,12 @@ class ContentCell: UICollectionViewCell {
         if let urlString = content.artworkUrl30 {
             self.imageView.kf.setImage(with: URL(string: urlString))
         }
+        if content.isRead {
+            self.contentView.backgroundColor = .lightGray
+        }
+        else {
+            self.contentView.backgroundColor = .white
+        }
     }
     
 }

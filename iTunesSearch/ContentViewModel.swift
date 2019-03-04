@@ -32,3 +32,11 @@ extension ContentViewModel {
     }
     
 }
+
+extension ContentViewModel {
+    
+    func read() {
+        self.content.isRead = true
+    }
+    
+}

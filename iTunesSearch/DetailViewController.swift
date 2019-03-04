@@ -22,6 +22,7 @@ class DetailViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         self.viewModel.load(view: self.contentView)
+        self.viewModel.read()
     }
     
 

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RxDataSources
 
 enum ContentType: String, Encodable {
     
@@ -25,7 +26,7 @@ enum ContentType: String, Encodable {
     
 }
 
-struct Content: Decodable {
+class Content: Decodable {
     
     let wrapperType: String?
     let kind: String?
@@ -59,6 +60,42 @@ struct Content: Decodable {
     let primaryGenreName: String?
     let isStreamable: Bool?
 
+    var isRead = false
+    
+    private enum CodingKeys: String, CodingKey {
+        case wrapperType
+        case kind
+        case artistId
+        case collectionId
+        case trackId
+        case artistName
+        case collectionName
+        case trackName
+        case collectionCensoredName
+        case trackCensoredName
+        case artistViewUrl
+        case collectionViewUrl
+        case trackViewUrl
+        case previewUrl
+        case artworkUrl30
+        case artworkUrl60
+        case artworkUrl100
+        case collectionPrice
+        case trackPrice
+        case releaseDate
+        case collectionExplicitness
+        case trackExplicitness
+        case discCount
+        case discNumber
+        case trackCount
+        case trackNumber
+        case trackTimeMillis
+        case country
+        case currency
+        case primaryGenreName
+        case isStreamable
+    }
+    
 }
 
 extension Content: Equatable {
@@ -70,10 +107,18 @@ extension Content: Equatable {
 }
 
 extension Content: CustomStringConvertible {
-    
+
     var description: String {
         return "Artist ID: " + String(describing: self.artistId) + "\n" +
         "Track Name: " + String(describing: self.trackName)
+    }
+
+}
+
+extension Content: IdentifiableType {
+    
+    var identity: String {
+        return (self.previewUrl ?? "") + "\(self.trackId ?? 0)"
     }
     
 }

@@ -22,6 +22,7 @@ class SearchViewController: UICollectionViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.collectionView.reloadData()
         if let indexPath = self.collectionView.indexPathsForSelectedItems?.first {
             self.collectionView.deselectItem(at: indexPath, animated: true)
         }
@@ -41,9 +42,10 @@ class SearchViewController: UICollectionViewController {
     
     private func setupRx() {
         
-        let datasource = RxCollectionViewSectionedReloadDataSource<ContentSection>(configureCell: { (datasource, collectionView, indexPath, content) -> UICollectionViewCell in
+        let datasource = RxCollectionViewSectionedAnimatedDataSource<ContentSection>(configureCell: { (datasource, collectionView, indexPath, content) -> UICollectionViewCell in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContentCell.identifier, for: indexPath) as! ContentCell
-            cell.load(content: content)
+            let content2 = self.viewModel.contentSections.value[indexPath.section].items[indexPath.row]
+            cell.load(content: content2)
             return cell
         }, configureSupplementaryView: { (datasource, collectionView, kind, indexPath) -> UICollectionReusableView in
             let contentHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ContentHeaderView.identifier, for: indexPath) as! ContentHeaderView

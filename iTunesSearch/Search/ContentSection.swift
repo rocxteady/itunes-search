@@ -21,3 +21,10 @@ extension ContentSection: SectionModelType {
         self.items = items
     }
 }
+extension ContentSection: AnimatableSectionModelType {
+
+    var identity: String {
+        return header
+    }
+    
+}
