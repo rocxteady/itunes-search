@@ -19,6 +19,13 @@ class SearchViewController: UICollectionViewController {
     private let disposeBag = DisposeBag()
     
     private let viewModel = SearchViewModel()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let indexPath = self.collectionView.indexPathsForSelectedItems?.first {
+            self.collectionView.deselectItem(at: indexPath, animated: true)
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -138,6 +145,28 @@ extension SearchViewController {
         let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: error, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+}
+
+extension SearchViewController {
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == DetailViewController.segueIdentifier {
+            let detailViewController = segue.destination as! DetailViewController
+            if let indexPath = self.collectionView.indexPathsForSelectedItems?.first {
+                let contentViewModel = self.contentViewModel(at: indexPath)
+                detailViewController.viewModel = contentViewModel
+            }
+        }
+    }
+    
+}
+
+extension SearchViewController {
+    
+    func contentViewModel(at indexPath: IndexPath) -> ContentViewModel {
+        return ContentViewModel(content: self.viewModel.contentSections.value[indexPath.section].items[indexPath.row])
     }
     
 }

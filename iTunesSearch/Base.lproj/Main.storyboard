@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -74,6 +75,10 @@
                                 <connections>
                                     <outlet property="imageView" destination="D9o-4I-6sr" id="Pv4-lF-THk"/>
                                     <outlet property="nameLabel" destination="cn6-eV-7hM" id="Cjy-ta-30Z"/>
+                                    <segue destination="bPZ-4V-eKa" kind="show" identifier="detail" id="OBG-9h-evb">
+                                        <segue key="commit" inheritsFrom="parent" id="DG8-Kj-80R"/>
+                                        <segue key="preview" inheritsFrom="commit" id="ufX-sJ-QSh"/>
+                                    </segue>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -93,8 +98,80 @@
             </objects>
             <point key="canvasLocation" x="809" y="-567"/>
         </scene>
+        <!--Detail-->
+        <scene sceneID="7YX-j4-xVc">
+            <objects>
+                <viewController id="bPZ-4V-eKa" customClass="DetailViewController" customModule="iTunesSearch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ohY-28-OfZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xPs-bq-H92" customClass="ContentView" customModule="iTunesSearch" customModuleProvider="target">
+                                <rect key="frame" x="16" y="80" width="343" height="201"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bpl-UH-rcn">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="128"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="128" id="4eT-eM-jgo"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cwE-SU-62k">
+                                        <rect key="frame" x="0.0" y="144" width="343" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8qk-n3-VNw">
+                                        <rect key="frame" x="0.0" y="180.5" width="343" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="cwE-SU-62k" secondAttribute="trailing" id="2H7-nH-peh"/>
+                                    <constraint firstItem="bpl-UH-rcn" firstAttribute="top" secondItem="xPs-bq-H92" secondAttribute="top" id="8Fw-oV-RDl"/>
+                                    <constraint firstItem="8qk-n3-VNw" firstAttribute="leading" secondItem="xPs-bq-H92" secondAttribute="leading" id="JED-Kc-aRv"/>
+                                    <constraint firstItem="8qk-n3-VNw" firstAttribute="top" secondItem="cwE-SU-62k" secondAttribute="bottom" constant="16" id="OmK-f0-9Ob"/>
+                                    <constraint firstAttribute="trailing" secondItem="8qk-n3-VNw" secondAttribute="trailing" id="VB9-qt-82S"/>
+                                    <constraint firstItem="bpl-UH-rcn" firstAttribute="leading" secondItem="xPs-bq-H92" secondAttribute="leading" id="kEx-GL-iHB"/>
+                                    <constraint firstAttribute="trailing" secondItem="bpl-UH-rcn" secondAttribute="trailing" id="lFj-ZD-Gw0"/>
+                                    <constraint firstItem="cwE-SU-62k" firstAttribute="top" secondItem="bpl-UH-rcn" secondAttribute="bottom" constant="16" id="pGO-6x-MX7"/>
+                                    <constraint firstItem="cwE-SU-62k" firstAttribute="leading" secondItem="xPs-bq-H92" secondAttribute="leading" id="spg-V3-4NE"/>
+                                    <constraint firstAttribute="bottom" secondItem="8qk-n3-VNw" secondAttribute="bottom" id="wRw-fu-VwN"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="contentArtistNameLabel" destination="cwE-SU-62k" id="aXT-37-Yxv"/>
+                                    <outlet property="contentImageView" destination="bpl-UH-rcn" id="fEM-lZ-MEV"/>
+                                    <outlet property="contentTrackNameLabel" destination="8qk-n3-VNw" id="fH4-my-Clc"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="xPs-bq-H92" firstAttribute="leading" secondItem="aNS-Y9-AS4" secondAttribute="leading" constant="16" id="8ex-EA-w15"/>
+                            <constraint firstItem="aNS-Y9-AS4" firstAttribute="trailing" secondItem="xPs-bq-H92" secondAttribute="trailing" constant="16" id="Zl7-6t-g0C"/>
+                            <constraint firstItem="xPs-bq-H92" firstAttribute="top" secondItem="aNS-Y9-AS4" secondAttribute="top" constant="16" id="f9g-xh-rqt"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="aNS-Y9-AS4"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Detail" id="nzB-av-ueR">
+                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="Lov-Wu-DsP"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="contentView" destination="xPs-bq-H92" id="8Cx-Dn-g4k"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sg4-Sr-R8L" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1594" y="-567"/>
+        </scene>
     </scenes>
     <resources>
         <image name="filter" width="25" height="25"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="OBG-9h-evb"/>
+    </inferredMetricsTieBreakers>
 </document>

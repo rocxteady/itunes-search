@@ -30,6 +30,9 @@
 		7CEFB60E222994A300EA81CA /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEFB60D222994A300EA81CA /* NetworkResponse.swift */; };
 		7CEFB612222995B800EA81CA /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEFB611222995B800EA81CA /* SearchResponse.swift */; };
 		7CEFB61522299DF000EA81CA /* ContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEFB61422299DF000EA81CA /* ContentCell.swift */; };
+		EB792D61222D0F5100360EEB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB792D60222D0F5100360EEB /* DetailViewController.swift */; };
+		EB792D63222D10A700360EEB /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB792D62222D10A700360EEB /* ContentViewModel.swift */; };
+		EB792D65222D11D800360EEB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB792D64222D11D800360EEB /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +84,9 @@
 		7CEFB61422299DF000EA81CA /* ContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCell.swift; sourceTree = "<group>"; };
 		850039426B23D8AAFF204FBE /* Pods-iTunesSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTunesSearch.debug.xcconfig"; path = "Target Support Files/Pods-iTunesSearch/Pods-iTunesSearch.debug.xcconfig"; sourceTree = "<group>"; };
 		CE9862E259C9420AF8BB3299 /* Pods-iTunesSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTunesSearch.release.xcconfig"; path = "Target Support Files/Pods-iTunesSearch/Pods-iTunesSearch.release.xcconfig"; sourceTree = "<group>"; };
+		EB792D60222D0F5100360EEB /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		EB792D62222D10A700360EEB /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		EB792D64222D11D800360EEB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +173,9 @@
 				7CEFB608222993E400EA81CA /* General */,
 				7CEFB61322299C9000EA81CA /* Search */,
 				7C698144222D062B001E98B1 /* SearchViewController */,
+				EB792D60222D0F5100360EEB /* DetailViewController.swift */,
+				EB792D62222D10A700360EEB /* ContentViewModel.swift */,
+				EB792D64222D11D800360EEB /* ContentView.swift */,
 				7CEFB5C822298CCF00EA81CA /* AppDelegate.swift */,
 				7CEFB5CC22298CCF00EA81CA /* Main.storyboard */,
 				7CEFB5CF22298CD000EA81CA /* Assets.xcassets */,
@@ -428,18 +437,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				7CEFB5CB22298CCF00EA81CA /* SearchViewController.swift in Sources */,
+				EB792D61222D0F5100360EEB /* DetailViewController.swift in Sources */,
 				7C8DA848222B037700F14422 /* ContentHeaderView.swift in Sources */,
 				7CEFB6002229929300EA81CA /* Configs.swift in Sources */,
 				7C8DA8412229A1ED00F14422 /* SearchParams.swift in Sources */,
 				7CEFB60E222994A300EA81CA /* NetworkResponse.swift in Sources */,
 				7CEFB61522299DF000EA81CA /* ContentCell.swift in Sources */,
 				7C8DA8432229A27800F14422 /* Encodable+Dictionary.swift in Sources */,
+				EB792D65222D11D800360EEB /* ContentView.swift in Sources */,
 				7CEFB60A2229942F00EA81CA /* SearchViewModel.swift in Sources */,
 				7CEFB5C922298CCF00EA81CA /* AppDelegate.swift in Sources */,
 				7CEFB6012229929300EA81CA /* Content.swift in Sources */,
 				7CEFB612222995B800EA81CA /* SearchResponse.swift in Sources */,
 				7CEFB605222992F500EA81CA /* ErrorHelper.swift in Sources */,
 				7C8DA845222AFFFC00F14422 /* ContentSection.swift in Sources */,
+				EB792D63222D10A700360EEB /* ContentViewModel.swift in Sources */,
 				7CEFB603222992B100EA81CA /* NetworkRequest.swift in Sources */,
 				7CEFB60C2229945F00EA81CA /* SearchRequest.swift in Sources */,
 				7CEFB5FF2229929300EA81CA /* Decodable+Init.swift in Sources */,
