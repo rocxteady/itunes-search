@@ -13,15 +13,24 @@ class SearchViewModel {
     
     let contentSections = Variable<[ContentSection]>([ContentSection]())
     
-    var term = Variable<String>("")
+    let term = Variable<String>("")
     
-    var contentType = Variable<ContentType>(.all)
+    let contentType = Variable<ContentType>(.all)
+    
+    let errorPublishSubject = PublishSubject<String>()
+    
+    let startedPublishSubject = PublishSubject<Void>()
+    
+    let completedPublishSubject = PublishSubject<Void>()
     
     private let request = SearchRequest()
     
     private var disposable: Disposable?
     
     private var disposeBag = DisposeBag()
+    
+    //Control for if user starts typing while searching
+    private var shouldContinueSearch = false
     
     init() {
         self.request.parameters = SearchParams()
@@ -36,12 +45,39 @@ class SearchViewModel {
     }
     
     private func search() {
+        //Stop if a search request is going on
+        self.request.end()
+        
+        self.startedPublishSubject.onNext(())
+        self.shouldContinueSearch = true
         self.disposable = self.request.start()
             .subscribe(onNext: { [weak self] (response) in
                 self?.contentSections.value = [ContentSection(header: self?.contentType.value.rawValue ?? ContentType.all.rawValue, items: response.results ?? [Content]())]
             }, onError: { [weak self] (error) in
-                self?.disposable?.dispose()
+                if let error = error as NSError? {
+                    self?.disposable?.dispose()
+                    
+                    //Ignore error if request is cancelled while typing
+                    if error.code != NSURLErrorCancelled {
+                        self?.shouldContinueSearch = false
+                        self?.errorPublishSubject.onNext(error.localizedDescription)
+                    }
+                    else {
+                        //Start searching because disposable is disposed because the previous request is cancelled
+                        if self?.shouldContinueSearch ?? false {
+                            self?.shouldContinueSearch = false
+                            self?.search()
+                        }
+                    }
+                }
+                else {
+                    self?.shouldContinueSearch = false
+                    self?.errorPublishSubject.onNext(error.localizedDescription)
+                    self?.disposable?.dispose()
+                }
             }, onCompleted: { [weak self] in
+                self?.shouldContinueSearch = false
+                self?.completedPublishSubject.onNext(())
                 self?.disposable?.dispose()
             })
     }
