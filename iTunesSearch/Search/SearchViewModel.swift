@@ -52,7 +52,18 @@ class SearchViewModel {
         self.shouldContinueSearch = true
         self.disposable = self.request.start()
             .subscribe(onNext: { [weak self] (response) in
-                self?.contentSections.value = [ContentSection(header: self?.contentType.value.rawValue ?? ContentType.all.rawValue, items: response.results ?? [Content]())]
+                let results = response.results?.filter({ (content) -> Bool in
+                    if let fileContent = ContentFileManager.sharedManager.getContent(by: content.identity) {
+                        return !fileContent.isDeleted
+                    }
+                    return true
+                }).map({ (content) -> Content in
+                    if let fileContent = ContentFileManager.sharedManager.getContent(by: content.identity) {
+                        content.isRead = fileContent.isRead
+                    }
+                    return content
+                })
+                self?.contentSections.value = [ContentSection(header: self?.contentType.value.rawValue ?? ContentType.all.rawValue, items: results ?? [Content]())]
             }, onError: { [weak self] (error) in
                 if let error = error as NSError? {
                     self?.disposable?.dispose()

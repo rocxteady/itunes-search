@@ -156,6 +156,7 @@ extension SearchViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == DetailViewController.segueIdentifier {
             let detailViewController = segue.destination as! DetailViewController
+            detailViewController.delegate = self
             if let indexPath = self.collectionView.indexPathsForSelectedItems?.first {
                 let contentViewModel = self.contentViewModel(at: indexPath)
                 detailViewController.viewModel = contentViewModel
@@ -169,6 +170,26 @@ extension SearchViewController {
     
     func contentViewModel(at indexPath: IndexPath) -> ContentViewModel {
         return ContentViewModel(content: self.viewModel.contentSections.value[indexPath.section].items[indexPath.row])
+    }
+    
+}
+
+extension SearchViewController: DetailViewControllerDelegate {
+    
+    func detailViewController(detailViewController: DetailViewController, deleteContentFor viewModel: ContentViewModel) {
+        do {
+            try viewModel.delete()
+            CATransaction.begin()
+            CATransaction.setCompletionBlock {
+                if let index = self.viewModel.contentSections.value[0].items.firstIndex(of: viewModel.content) {
+                    self.viewModel.contentSections.value[0].items.remove(at: index)
+                }
+            }
+            self.navigationController?.popViewController(animated: true)
+            CATransaction.commit()
+        } catch let error {
+            self.showError(error: error.localizedDescription)
+        }
     }
     
 }

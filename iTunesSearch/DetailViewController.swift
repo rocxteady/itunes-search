@@ -9,6 +9,12 @@
 import UIKit
 import Kingfisher
 
+protocol DetailViewControllerDelegate: class {
+    
+    func detailViewController(detailViewController: DetailViewController, deleteContentFor viewModel: ContentViewModel)
+    
+}
+
 class DetailViewController: UIViewController {
     
     static let segueIdentifier = "detail"
@@ -17,15 +23,29 @@ class DetailViewController: UIViewController {
     
     @IBOutlet weak var contentView: ContentView!
     
+    weak var delegate: DetailViewControllerDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.viewModel.load(view: self.contentView)
-        self.viewModel.read()
+        do {
+            try self.viewModel.read()
+        } catch let error {
+            print(error.localizedDescription)
+        }
     }
     
-
+    @IBAction func deleteContent(_ sender: Any) {
+        let alertController = UIAlertController(title: NSLocalizedString("Content Deletion", comment: ""), message: NSLocalizedString("Are you sure to delete this content from the search list?", comment: ""), preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .destructive, handler: { (action) in
+            self.delegate?.detailViewController(detailViewController: self, deleteContentFor: self.viewModel)
+        }))
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 

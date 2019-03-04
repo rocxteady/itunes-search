@@ -12,7 +12,7 @@ import Kingfisher
 
 class ContentViewModel {
     
-    private var content: Content
+    var content: Content
     
     init(content: Content) {
         self.content = content
@@ -35,8 +35,27 @@ extension ContentViewModel {
 
 extension ContentViewModel {
     
-    func read() {
+    func read() throws {
         self.content.isRead = true
+        var fileContent = ContentFileManager.sharedManager.getContent(by: self.content.identity)
+        if fileContent != nil {
+            fileContent!.isRead = true
+        }
+        else {
+            fileContent = FileContent(identity: self.content.identity, isRead: true)
+        }
+        try ContentFileManager.sharedManager.write(content: fileContent!)
+    }
+    
+    func delete() throws {
+        var fileContent = ContentFileManager.sharedManager.getContent(by: self.content.identity)
+        if fileContent != nil {
+            fileContent!.isDeleted = true
+        }
+        else {
+            fileContent = FileContent(identity: self.content.identity, isRead: true)
+        }
+        try ContentFileManager.sharedManager.write(content: fileContent!)
     }
     
 }

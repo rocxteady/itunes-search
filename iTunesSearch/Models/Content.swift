@@ -101,7 +101,7 @@ class Content: Decodable {
 extension Content: Equatable {
     
     static func == (lhs: Content, rhs: Content) -> Bool {
-        return lhs.trackId == rhs.trackId
+        return lhs.identity == rhs.identity
     }
     
 }

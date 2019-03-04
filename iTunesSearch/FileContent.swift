@@ -31,6 +31,20 @@ class FileContent: Codable {
     
     var isDeleted = false
     
+    init(identity: String) {
+        self.identity = identity
+    }
+    
+}
+
+extension FileContent {
+    
+    convenience init(identity: String, isRead: Bool = false, isDeleted: Bool = false) {
+        self.init(identity: identity)
+        self.isRead = isRead
+        self.isDeleted = isDeleted
+    }
+    
 }
 
 extension FileContent: Equatable {

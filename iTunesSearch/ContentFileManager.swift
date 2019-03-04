@@ -26,6 +26,10 @@ class ContentFileManager {
         }
     }
     
+    func getContent(by identity: String) -> FileContent? {
+        return self.contents?.filter({return $0.identity == identity}).first
+    }
+    
     func write(content: FileContent) throws {
         if contents == nil {
             contents = [FileContent]()

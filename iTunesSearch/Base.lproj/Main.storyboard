@@ -157,7 +157,11 @@
                         <viewLayoutGuide key="safeArea" id="aNS-Y9-AS4"/>
                     </view>
                     <navigationItem key="navigationItem" title="Detail" id="nzB-av-ueR">
-                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="Lov-Wu-DsP"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="Lov-Wu-DsP">
+                            <connections>
+                                <action selector="deleteContent:" destination="bPZ-4V-eKa" id="5iX-05-jYx"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="contentView" destination="xPs-bq-H92" id="8Cx-Dn-g4k"/>
