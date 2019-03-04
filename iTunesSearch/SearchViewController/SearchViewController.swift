@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxDataSources
 
 class SearchViewController: UICollectionViewController {
     
@@ -31,6 +32,16 @@ class SearchViewController: UICollectionViewController {
     }
     
     private func setupRx() {
+        let datasource = RxCollectionViewSectionedReloadDataSource<ContentSection>(configureCell: { (datasource, collectionView, indexPath, content) -> UICollectionViewCell in
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContentCell.identifier, for: indexPath) as! ContentCell
+            cell.load(content: content)
+            return cell
+        }, configureSupplementaryView: { (datasource, collectionView, kind, indexPath) -> UICollectionReusableView in
+            let contentHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ContentHeaderView.identifier, for: indexPath) as! ContentHeaderView
+            let contentSection = self.viewModel.contentSections.value[indexPath.section]
+            contentHeaderView.titleLabel.text = contentSection.header
+            return contentHeaderView
+        })
         self.searchBar.rx.text.orEmpty
             .debounce(0.5, scheduler: MainScheduler.instance)
             .bind(to: self.viewModel.term)
@@ -40,9 +51,8 @@ class SearchViewController: UICollectionViewController {
                 self.searchBar.text = nil
                 self.searchBar.resignFirstResponder()
             }).disposed(by: self.disposeBag)
-        self.viewModel.contents.asObservable().bind(to: self.collectionView.rx.items(cellIdentifier: ContentCell.identifier, cellType: ContentCell.self)) { (index, content, cell) in
-            cell.load(content: content)
-        }.disposed(by: self.disposeBag)
+        self.viewModel.contentSections.asObservable().bind(to: self.collectionView.rx.items(dataSource: datasource))
+        .disposed(by: self.disposeBag)
         self.collectionView.rx.setDelegate(self)
         .disposed(by: self.disposeBag)
         self.collectionView.rx.didScroll.subscribe(onNext: {

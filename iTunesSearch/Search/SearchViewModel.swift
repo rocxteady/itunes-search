@@ -11,7 +11,7 @@ import RxSwift
 
 class SearchViewModel {
     
-    let contents = Variable<[Content]>([Content]())
+    let contentSections = Variable<[ContentSection]>([ContentSection]())
     
     var term = Variable<String>("")
     
@@ -38,8 +38,8 @@ class SearchViewModel {
     private func search() {
         self.disposable = self.request.start()
             .subscribe(onNext: { [weak self] (response) in
-                self?.contents.value = response.results ?? [Content]()
-            }, onError: { [weak self] (error) in                
+                self?.contentSections.value = [ContentSection(header: self?.contentType.value.rawValue ?? ContentType.all.rawValue, items: response.results ?? [Content]())]
+            }, onError: { [weak self] (error) in
                 self?.disposable?.dispose()
             }, onCompleted: { [weak self] in
                 self?.disposable?.dispose()
