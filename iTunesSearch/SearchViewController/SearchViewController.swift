@@ -110,6 +110,10 @@ class SearchViewController: UICollectionViewController {
         }).disposed(by: self.disposeBag)
     }
     
+    private func delete(content: Content) {
+        self.viewModel.delete(content: content)
+    }
+    
 }
 
 //MARK: UICollectionViewDelegateFlowLayout
@@ -181,9 +185,7 @@ extension SearchViewController: DetailViewControllerDelegate {
             try viewModel.delete()
             CATransaction.begin()
             CATransaction.setCompletionBlock {
-                if let index = self.viewModel.contentSections.value[0].items.firstIndex(of: viewModel.content) {
-                    self.viewModel.contentSections.value[0].items.remove(at: index)
-                }
+                self.delete(content: viewModel.content)
             }
             self.navigationController?.popViewController(animated: true)
             CATransaction.commit()

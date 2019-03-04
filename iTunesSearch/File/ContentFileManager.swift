@@ -20,7 +20,7 @@ class ContentFileManager {
     
     init() {
         do {
-            self.contents =  try self.read()
+            try self.read()
         } catch let error {
             print(error.localizedDescription)
         }
@@ -46,6 +46,11 @@ class ContentFileManager {
         }
         return self.contents
     }
+    
+}
+
+//MARK: File Operations
+extension ContentFileManager {
     
     private func write(data: Data, with key: String) throws {
         if let fileURL = dir?.appendingPathComponent(key) {

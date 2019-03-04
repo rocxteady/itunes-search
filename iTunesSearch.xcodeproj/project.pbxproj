@@ -147,6 +147,25 @@
 			path = SearchViewController;
 			sourceTree = "<group>";
 		};
+		7C75F594222D917600A24919 /* ContentDetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EB792D60222D0F5100360EEB /* DetailViewController.swift */,
+				EB792D62222D10A700360EEB /* ContentViewModel.swift */,
+				EB792D64222D11D800360EEB /* ContentView.swift */,
+			);
+			path = ContentDetailViewController;
+			sourceTree = "<group>";
+		};
+		7C75F595222D918A00A24919 /* File */ = {
+			isa = PBXGroup;
+			children = (
+				EB792D66222D41D400360EEB /* ContentFileManager.swift */,
+				EB792D68222D43D700360EEB /* FileContent.swift */,
+			);
+			path = File;
+			sourceTree = "<group>";
+		};
 		7CEFB5BC22298CCE00EA81CA = {
 			isa = PBXGroup;
 			children = (
@@ -174,19 +193,16 @@
 			children = (
 				7CEFB606222993BE00EA81CA /* Networking */,
 				7CEFB607222993CB00EA81CA /* Models */,
+				7C75F595222D918A00A24919 /* File */,
 				7CEFB608222993E400EA81CA /* General */,
 				7CEFB61322299C9000EA81CA /* Search */,
 				7C698144222D062B001E98B1 /* SearchViewController */,
-				EB792D60222D0F5100360EEB /* DetailViewController.swift */,
-				EB792D62222D10A700360EEB /* ContentViewModel.swift */,
-				EB792D64222D11D800360EEB /* ContentView.swift */,
+				7C75F594222D917600A24919 /* ContentDetailViewController */,
 				7CEFB5C822298CCF00EA81CA /* AppDelegate.swift */,
 				7CEFB5CC22298CCF00EA81CA /* Main.storyboard */,
 				7CEFB5CF22298CD000EA81CA /* Assets.xcassets */,
 				7CEFB5D122298CD000EA81CA /* LaunchScreen.storyboard */,
 				7CEFB5D422298CD000EA81CA /* Info.plist */,
-				EB792D66222D41D400360EEB /* ContentFileManager.swift */,
-				EB792D68222D43D700360EEB /* FileContent.swift */,
 			);
 			path = iTunesSearch;
 			sourceTree = "<group>";

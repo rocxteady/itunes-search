@@ -93,4 +93,12 @@ class SearchViewModel {
             })
     }
     
+    func delete(content: Content) {
+        if var contentSection = self.contentSections.value.first {
+            if let index = contentSection.items.firstIndex(of: content) {
+                contentSection.items.remove(at: index)
+            }
+        }
+    }
+    
 }
