@@ -120,7 +120,7 @@ class SearchViewController: UICollectionViewController {
 extension SearchViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if UIDevice.current.orientation == .portrait || UIDevice.current.orientation == .portraitUpsideDown {
+        if UIApplication.shared.statusBarOrientation == .portrait || UIApplication.shared.statusBarOrientation == .portraitUpsideDown {
             let layout = collectionViewLayout as! UICollectionViewFlowLayout
             return CGSize(width: (collectionView.bounds.size.width - layout.sectionInset.left - layout.sectionInset.right - layout.minimumInteritemSpacing)/2.0, height: ContentCell.defaultHeight)
         }
