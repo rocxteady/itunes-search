@@ -1,4 +1,4 @@
-# # Displaying content using iTunes Search API with RxSwift and MVVM
+# # An iOS App which displays content using iTunes Search API with RxSwift and MVVM
 
 ### Instalation
 
